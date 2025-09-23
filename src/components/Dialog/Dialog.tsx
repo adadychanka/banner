@@ -19,7 +19,7 @@ function Dialog({
 }) {
     useEscapeKey(onClose, open)
 
-    const dialogRef = useRef<HTMLDivElement>(null)
+    const dialogRef = useRef<HTMLDialogElement>(null)
 
     const focusFirstInteractiveElement =
         useFocusFirstInteractiveElement(dialogRef)
@@ -35,17 +35,18 @@ function Dialog({
             className={cn(styles.dialogBackdrop, {
                 [styles.dialogBackdropHidden]: !open,
             })}
-            ref={dialogRef}
             data-testid="business-funding-banner-dialog"
         >
-            <div
+            <dialog
+                ref={dialogRef}
+                open={open}
                 className={cn(styles.dialogContent, {
                     [styles.dialogContentFullScreen]: fullScreen,
                     [styles.dialogContentAnimated]: animated,
                 })}
             >
                 {children}
-            </div>
+            </dialog>
         </div>
     )
 }
