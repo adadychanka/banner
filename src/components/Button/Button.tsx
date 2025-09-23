@@ -1,4 +1,10 @@
-import { type HTMLAttributes, memo, type ReactNode, useMemo } from 'react'
+import {
+    type HTMLAttributes,
+    memo,
+    type ReactNode,
+    type RefObject,
+    useMemo,
+} from 'react'
 import { cn } from '../../utilities/cn'
 import styles from './Button.module.css'
 
@@ -6,6 +12,7 @@ type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
     children: ReactNode
     variant: 'primary' | 'secondary'
     fullWidth?: boolean
+    ref?: RefObject<HTMLButtonElement | null>
 }
 
 function Button({
@@ -13,6 +20,7 @@ function Button({
     variant,
     className,
     fullWidth,
+    ref,
     ...props
 }: ButtonProps) {
     const variantClass = useMemo(
@@ -26,6 +34,7 @@ function Button({
                 [styles.fullWidth]: fullWidth,
             })}
             {...props}
+            ref={ref}
         >
             {children}
         </button>

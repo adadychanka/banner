@@ -13,7 +13,7 @@ function BusinessFundingBannerDialog({
     if (!open && !keepMounted) return null
 
     return (
-        <Dialog open={open} onClose={onClose}>
+        <Dialog open={open} onClose={onClose} animated>
             <BusinessFundingBanner onClose={onClose} />
         </Dialog>
     )

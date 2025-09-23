@@ -7,11 +7,13 @@ function Dialog({
     open,
     onClose,
     fullScreen,
+    animated,
 }: {
     children: React.ReactNode
     open: boolean
     onClose: () => void
     fullScreen?: boolean
+    animated?: boolean
 }) {
     useEscapeKey(onClose, open)
 
@@ -25,6 +27,7 @@ function Dialog({
             <div
                 className={cn(styles.dialogContent, {
                     [styles.dialogContentFullScreen]: fullScreen,
+                    [styles.dialogContentAnimated]: animated,
                 })}
             >
                 {children}
