@@ -1,4 +1,5 @@
 import { cn } from '../../utilities/cn'
+import { useEscapeKey } from '../../utilities/useEscapeKey'
 import styles from './Dialog.module.css'
 
 function Dialog({
@@ -10,19 +11,14 @@ function Dialog({
     open: boolean
     onClose: () => void
 }) {
+    useEscapeKey(onClose, open)
+
     return (
         <div
             className={cn(styles.dialogBackdrop, {
                 [styles.dialogBackdropHidden]: !open,
             })}
             data-testid="business-funding-banner-dialog"
-            onKeyDown={(e) => {
-                if (e.key === 'Escape') {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    onClose()
-                }
-            }}
         >
             <div className={styles.dialogContent}>{children}</div>
         </div>
