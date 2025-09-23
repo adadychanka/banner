@@ -13,7 +13,7 @@ function Banner(props: {
     return (
         <div className={styles.banner}>
             <div className={styles.bannerHeader}>
-                <h1>{title}</h1>
+                <h1 className={styles.bannerTitle}>{title}</h1>
 
                 <div>
                     <CloseButton onClick={() => {}} />

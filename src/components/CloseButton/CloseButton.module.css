@@ -6,15 +6,17 @@
     width: 2.25rem;
     border: none;
     border-radius: 50%;
-    background-color: #0B002E0D;
+    background-color: #0b002e0d;
 
     cursor: pointer;
-    transition: opacity 0.5s ease, background-color 0.5s ease;
+    transition:
+        opacity 0.5s ease,
+        background-color 0.5s ease;
 }
 
 .closeButton:hover {
     opacity: 0.8;
-    background-color: #0B002E1A;
+    background-color: #0b002e1a;
 }
 
 .closeIcon {
