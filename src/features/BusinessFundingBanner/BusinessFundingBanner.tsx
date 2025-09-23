@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import Banner from '../../components/Banner/Banner'
 import Button from '../../components/Button/Button'
 import Link from '../../components/Link/Link'
+import BusinessFundingBannerContent from './BusinessFundingBannerContent'
 
 function BusinessFundingBanner() {
     const actions = useMemo(() => {
@@ -10,7 +11,7 @@ function BusinessFundingBanner() {
                 Apply Now
             </Button>,
             <Link key="link" href="https://finom.co/">
-                Learn More
+                More Information
             </Link>,
         ]
     }, [])
@@ -18,7 +19,7 @@ function BusinessFundingBanner() {
     return (
         <Banner
             title="Get the Business Funding You Need"
-            content={<p>Banner</p>}
+            content={<BusinessFundingBannerContent />}
             actions={actions}
         />
     )
