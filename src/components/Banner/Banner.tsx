@@ -2,6 +2,7 @@ import { memo, type ReactElement } from 'react'
 import coinsCurrencyBg from '../../assets/coins-currency.png'
 import CloseButton from '../CloseButton/CloseButton'
 import styles from './Banner.module.css'
+import Typography from '../Typography/Typography'
 
 function Banner(props: {
     title: string
@@ -13,9 +14,13 @@ function Banner(props: {
     return (
         <div className={styles.banner} data-testid="banner">
             <div className={styles.bannerHeader} data-testid="banner-header">
-                <h1 className={styles.bannerTitle} data-testid="banner-title">
+                <Typography
+                    className={styles.bannerTitle}
+                    variant="h1"
+                    data-testid="banner-title"
+                >
                     {title}
-                </h1>
+                </Typography>
 
                 <div
                     className={styles.bannerCloseButton}

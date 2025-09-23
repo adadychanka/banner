@@ -1,0 +1,44 @@
+.h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    font-family: 'Poppins', serif;
+    line-height: 1.5rem;
+    color: #0B002E;
+}
+
+.h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    font-family: 'Poppins', serif;
+    line-height: 1.5rem;
+    color: #0B002E;
+}
+
+.body1 {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    font-family: 'Poppins', serif;
+    line-height: 1.5rem;
+    color: #0B002E;
+}
+
+.button {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 100%;
+    font-family: 'Poppins', serif;
+    color: #FFF;
+}
+
+.link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 100%;
+    font-family: 'Poppins', serif;
+    color: #0B002E;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

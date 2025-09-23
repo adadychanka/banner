@@ -1,5 +1,6 @@
 import styles from './BusinessFundingBannerContent.module.css'
 import checkIcon from '../../assets/check-solid.svg'
+import Typography from '../../components/Typography/Typography'
 
 type BenefitOption = {
     title: string
@@ -20,7 +21,9 @@ const BENEFITS: BenefitOption[] = [
 function BusinessFundingBannerContent() {
     return (
         <div className={styles.businessFundingBannerContent}>
-            <p
+            <Typography
+                variant="body1"
+                component="p"
                 key="description"
                 className={styles.businessFundingBannerContentEntry}
             >
@@ -28,7 +31,7 @@ function BusinessFundingBannerContent() {
                 needs. Whether you're investing in new equipment, increasing
                 inventory, or boosting cash flow, we offer quick approvals and
                 competitive rates to keep your business growing.
-            </p>
+            </Typography>
 
             <div>
                 {BENEFITS.map((benefit) => (
@@ -39,7 +42,9 @@ function BusinessFundingBannerContent() {
                         <span>
                             <img src={checkIcon} alt="Check" />
                         </span>
-                        <span>{benefit.title}</span>
+                        <Typography variant="h2" component="span">
+                            {benefit.title}
+                        </Typography>
                     </div>
                 ))}
             </div>
