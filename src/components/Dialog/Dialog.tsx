@@ -1,5 +1,7 @@
+import { useLayoutEffect, useRef } from 'react'
 import { cn } from '../../utilities/cn'
 import { useEscapeKey } from '../../utilities/useEscapeKey'
+import { useFocusFirstInteractiveElement } from '../../utilities/useFocusFirstInteractiveElement'
 import styles from './Dialog.module.css'
 
 function Dialog({
@@ -17,11 +19,23 @@ function Dialog({
 }) {
     useEscapeKey(onClose, open)
 
+    const dialogRef = useRef<HTMLDivElement>(null)
+
+    const focusFirstInteractiveElement =
+        useFocusFirstInteractiveElement(dialogRef)
+
+    useLayoutEffect(() => {
+        if (open) {
+            focusFirstInteractiveElement()
+        }
+    }, [open, focusFirstInteractiveElement])
+
     return (
         <div
             className={cn(styles.dialogBackdrop, {
                 [styles.dialogBackdropHidden]: !open,
             })}
+            ref={dialogRef}
             data-testid="business-funding-banner-dialog"
         >
             <div
