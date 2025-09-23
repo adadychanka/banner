@@ -119,7 +119,6 @@ pnpm deploy
 
 - **Modern Browsers:** Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
 - **Mobile:** iOS Safari 14+, Chrome Mobile 90+
-- **Features Used:** CSS Grid, Flexbox, CSS Custom Properties, ES2022
 
 ## 📊 Performance
 
