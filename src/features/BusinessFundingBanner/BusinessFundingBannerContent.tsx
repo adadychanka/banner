@@ -1,6 +1,6 @@
-import styles from './BusinessFundingBannerContent.module.css'
 import checkIcon from '../../assets/check-solid.svg'
 import Typography from '../../components/Typography/Typography'
+import styles from './BusinessFundingBannerContent.module.css'
 
 type BenefitOption = {
     title: string
@@ -24,7 +24,6 @@ function BusinessFundingBannerContent() {
             <Typography
                 variant="body1"
                 component="p"
-                key="description"
                 className={styles.businessFundingBannerContentEntry}
             >
                 Expand your business with a flexible loan tailored to your
@@ -33,7 +32,7 @@ function BusinessFundingBannerContent() {
                 competitive rates to keep your business growing.
             </Typography>
 
-            <div>
+            <div className={styles.businessFundingBannerContentBenefits}>
                 {BENEFITS.map((benefit) => (
                     <div
                         key={benefit.title}
