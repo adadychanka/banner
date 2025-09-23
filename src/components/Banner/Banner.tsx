@@ -8,7 +8,7 @@ export type BannerProps = {
     title: string
     content: ReactElement
     actions: ReactElement[]
-    onClose: () => void
+    onClose?: () => void
 }
 
 function Banner(props: BannerProps) {
@@ -25,12 +25,17 @@ function Banner(props: BannerProps) {
                     {title}
                 </Typography>
 
-                <div
-                    className={styles.bannerCloseButton}
-                    data-testid="banner-close-button"
-                >
-                    <CloseButton onClick={onClose} aria-label="Close banner" />
-                </div>
+                {onClose && (
+                    <div
+                        className={styles.bannerCloseButton}
+                        data-testid="banner-close-button"
+                    >
+                        <CloseButton
+                            onClick={onClose}
+                            aria-label="Close banner"
+                        />
+                    </div>
+                )}
             </div>
 
             <div className={styles.bannerContent}>{content}</div>

@@ -8,7 +8,12 @@ type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 
 function Link({ href, children, className, ...props }: LinkProps) {
     return (
-        <a href={href} className={cn(styles.link, className)} {...props}>
+        <a
+            href={href}
+            className={cn(styles.link, className)}
+            target="_blank"
+            {...props}
+        >
             {children}
         </a>
     )

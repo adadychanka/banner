@@ -6,7 +6,7 @@ import Typography from '../../components/Typography/Typography'
 import useIsMobile from '../../utilities/useIsMobile'
 import BusinessFundingBannerContent from './BusinessFundingBannerContent'
 
-function BusinessFundingBanner() {
+function BusinessFundingBanner({ onClose }: { onClose?: () => void }) {
     const isMobile = useIsMobile()
 
     const actions = useMemo(() => {
@@ -25,7 +25,7 @@ function BusinessFundingBanner() {
             title="Get the Business Funding You Need"
             content={<BusinessFundingBannerContent />}
             actions={actions}
-            onClose={() => {}}
+            onClose={onClose}
         />
     )
 }
