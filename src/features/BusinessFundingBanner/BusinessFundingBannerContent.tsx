@@ -39,7 +39,7 @@ function BusinessFundingBannerContent() {
                         className={styles.businessFundingBannerContentBenefit}
                     >
                         <span>
-                            <img src={checkIcon} alt="Check" />
+                            <img src={checkIcon} alt="" />
                         </span>
                         <Typography variant="h2" component="span">
                             {benefit.title}

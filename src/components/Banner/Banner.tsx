@@ -4,12 +4,15 @@ import CloseButton from '../CloseButton/CloseButton'
 import styles from './Banner.module.css'
 import Typography from '../Typography/Typography'
 
-function Banner(props: {
+export type BannerProps = {
     title: string
     content: ReactElement
     actions: ReactElement[]
-}) {
-    const { title, content, actions } = props
+    onClose: () => void
+}
+
+function Banner(props: BannerProps) {
+    const { title, content, actions, onClose } = props
 
     return (
         <div className={styles.banner} data-testid="banner">
@@ -26,7 +29,7 @@ function Banner(props: {
                     className={styles.bannerCloseButton}
                     data-testid="banner-close-button"
                 >
-                    <CloseButton onClick={() => {}} aria-label="Close banner" />
+                    <CloseButton onClick={onClose} aria-label="Close banner" />
                 </div>
             </div>
 
@@ -35,7 +38,9 @@ function Banner(props: {
             {actions.length > 0 && (
                 <div className={styles.bannerActions}>
                     {actions.map((action) => (
-                        <div key={action.key}>{action}</div>
+                        <div className={styles.bannerAction} key={action.key}>
+                            {action}
+                        </div>
                     ))}
                 </div>
             )}

@@ -5,9 +5,16 @@ import styles from './Button.module.css'
 type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
     children: ReactNode
     variant: 'primary' | 'secondary'
+    fullWidth?: boolean
 }
 
-function Button({ children, variant, className, ...props }: ButtonProps) {
+function Button({
+    children,
+    variant,
+    className,
+    fullWidth,
+    ...props
+}: ButtonProps) {
     const variantClass = useMemo(
         () => styles[variant] || styles.primary,
         [variant]
@@ -15,7 +22,9 @@ function Button({ children, variant, className, ...props }: ButtonProps) {
 
     return (
         <button
-            className={cn(styles.button, variantClass, className)}
+            className={cn(styles.button, variantClass, className, {
+                [styles.fullWidth]: fullWidth,
+            })}
             {...props}
         >
             {children}
