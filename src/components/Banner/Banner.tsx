@@ -1,8 +1,10 @@
 import { memo, type ReactElement } from 'react'
-import coinsCurrencyBg from '../../assets/coins-currency.png'
+import coinsCurrencyDesktop from '../../assets/coins-currency-desktop.png'
+import coinsCurrencyMobile from '../../assets/coins-currency-mobile.png'
 import CloseButton from '../CloseButton/CloseButton'
-import styles from './Banner.module.css'
 import Typography from '../Typography/Typography'
+import styles from './Banner.module.css'
+import useIsMobile from '../../utilities/useIsMobile'
 
 export type BannerProps = {
     title: string
@@ -13,6 +15,8 @@ export type BannerProps = {
 
 function Banner(props: BannerProps) {
     const { title, content, actions, onClose } = props
+
+    const isMobile = useIsMobile()
 
     return (
         <div className={styles.banner} data-testid="banner">
@@ -50,9 +54,21 @@ function Banner(props: BannerProps) {
                 </div>
             )}
 
-            <div className={styles.bannerImage}>
-                <img src={coinsCurrencyBg} alt="" />
-            </div>
+            {!isMobile && (
+                <div className={styles.bannerImage}>
+                    <picture>
+                        <source
+                            srcSet={coinsCurrencyDesktop}
+                            media="(min-width: 601px)"
+                        />
+                        <source
+                            srcSet={coinsCurrencyMobile}
+                            media="(max-width: 599px)"
+                        />
+                        <img src={coinsCurrencyDesktop} alt="" />
+                    </picture>
+                </div>
+            )}
         </div>
     )
 }
