@@ -1,6 +1,6 @@
 .link {
-    color: #0B002EA3;
-    
+    color: #0b002ea3;
+
     font-size: 0.75rem;
     font-weight: 600;
     line-height: 100%;
@@ -14,5 +14,5 @@
 
 .link:hover {
     text-decoration: underline;
-    color: #0B002EA1;
+    color: #0b002ea1;
 }

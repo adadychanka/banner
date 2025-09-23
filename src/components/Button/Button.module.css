@@ -11,14 +11,14 @@
 }
 
 .primary {
-    background-color: #FF4C5C;
+    background-color: #ff4c5c;
     color: #fff;
     opacity: 1;
     transition: all 0.5s ease;
 }
 
 .primary:hover {
-    background-color: #FF4C5CAA;
+    background-color: #ff4c5caa;
     transform: scale(1.02);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
@@ -33,7 +33,7 @@
 }
 
 .secondary:hover {
-    background-color: #242424A1;
+    background-color: #242424a1;
     opacity: 0.9;
 }
 

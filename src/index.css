@@ -14,10 +14,16 @@
     -moz-osx-font-smoothing: grayscale;
 
     /* breakpoints */
-    --breakpoint-sm: 600px; 
+    --breakpoint-sm: 600px;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0;
 }
 
