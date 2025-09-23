@@ -22,11 +22,15 @@ pnpm dev
 ### Available Scripts
 
 ```bash
-pnpm dev      # Start development server
-pnpm build    # Build for production
-pnpm preview  # Preview production build
-pnpm lint     # Run ESLint
-pnpm format   # Format code with Prettier
+pnpm dev          # Start development server
+pnpm build        # Build for production
+pnpm preview      # Preview production build
+pnpm lint         # Run ESLint
+pnpm format       # Format code with Prettier
+pnpm test         # Run tests
+pnpm test:watch   # Run tests in watch mode
+pnpm test:coverage # Run tests with coverage report
+pnpm deploy       # Build and deploy to GitHub Pages
 ```
 
 ## 📱 Responsive Design
@@ -57,28 +61,39 @@ export const BREAKPOINTS = {
 - **ARIA Labels:** Proper labeling for screen readers
 - **Keyboard Support:** Tab navigation and Escape key
 
-## 🧩 Key Components
+## 🧪 Testing
 
-### Banner Component
+This project includes comprehensive testing with Jest and React Testing Library.
 
-The main banner layout with title, content, actions, and close functionality.
+### Test Configuration
 
-```typescript
-<Banner
-  title="Get the Business Funding You Need"
-  content={<BusinessFundingBannerContent />}
-  actions={[primaryButton, moreInfoLink]}
-  onClose={() => setOpen(false)}
-/>
+- **Test Runner:** Jest with TypeScript support
+- **Testing Library:** React Testing Library with user-event
+- **Environment:** jsdom for DOM simulation
+- **Coverage:** Full coverage reporting with HTML output
+
+### Testing Standards
+
+- Tests are co-located with components (`Component.test.tsx`)
+- Use `screen` object for all queries (following RTL best practices)
+- Prefer `userEvent` over `fireEvent` for interactions
+- Follow semantic query priority: role → label → text → testId
+- Structure tests with descriptive names and AAA pattern (Arrange, Act, Assert)
+
+### Running Tests
+
+```bash
+# Run all tests
+pnpm test
+
+# Run tests in watch mode during development
+pnpm test:watch
+
+# Generate coverage report
+pnpm test:coverage
 ```
 
-### BusinessFundingBanner
-
-Feature-specific banner with funding-related content and benefits list.
-
-### Dialog Component
-
-Modal wrapper with backdrop and escape key handling.
+Coverage reports are generated in the `coverage/` directory with detailed HTML reports.
 
 ## 🎯 Features
 
@@ -91,11 +106,13 @@ Modal wrapper with backdrop and escape key handling.
 
 ### 🔧 Technical Features
 
-- **TypeScript:** Full type safety
-- **CSS Modules:** Scoped styling
-- **Custom Hooks:** Mobile detection and keyboard handling
-- **Memoization:** Optimized re-renders
-- **Modern React:** React 19 with latest patterns
+- **React 19:** Latest React features and patterns
+- **TypeScript:** Full type safety with strict configuration
+- **CSS Modules:** Scoped styling with utility-first approach
+- **Custom Hooks:** Mobile detection, keyboard handling, and focus management
+- **Memoization:** Optimized re-renders with React.memo and useMemo
+- **Accessibility:** Full keyboard navigation and screen reader support
+- **Testing:** Comprehensive test suite with Jest and React Testing Library
 
 ## 📦 Deployment
 
@@ -129,23 +146,84 @@ pnpm deploy
 
 ## 🔍 Code Quality
 
-### Linting & Formatting
+### Development Tools
 
-- **ESLint:** TypeScript and React rules
-- **Prettier:** Consistent code formatting
-- **Strict Mode:** TypeScript strict configuration
+- **ESLint:** TypeScript and React rules with Prettier integration
+- **Prettier:** Consistent code formatting (4 spaces, single quotes)
+- **TypeScript:** Strict configuration with comprehensive type coverage
+- **Jest:** Test runner with TypeScript support and coverage reporting
+- **Cursor Rules:** Automated coding standards enforcement
 
-### Best Practices
+### Testing Standards
 
-- **Component Composition:** Reusable and testable components
-- **Type Safety:** Comprehensive TypeScript coverage
-- **Accessibility:** WCAG 2.1 AA compliance
-- **Performance:** Memoized components and optimized renders
+- **Test Coverage:** 9 test files covering core components and utilities
+- **RTL Best Practices:** Screen object usage, semantic queries, userEvent interactions
+- **Test Structure:** Descriptive naming, AAA pattern, organized describe blocks
+- **Accessibility Testing:** Focus management, ARIA attributes, keyboard navigation
+
+### Code Standards
+
+- **Component Architecture:** Memoized, composable, and reusable components
+- **Type Safety:** Full TypeScript coverage with strict configuration
+- **Accessibility:** WCAG 2.1 AA compliance with proper ARIA labeling
+- **Performance:** Optimized re-renders with useMemo and memo
+- **CSS Architecture:** CSS Modules with utility-first class naming
+
+### Cursor AI Integration
+
+This project includes Cursor-specific rules in `.cursor/rules/` for:
+
+- **React Testing Library:** Best practices and anti-patterns
+- **Test Structure:** Organization and naming conventions
+- **Code Consistency:** Automated enforcement of project standards
+
+## 📦 Dependencies
+
+### Core Dependencies
+
+- **React 19.1.1:** Latest React with modern features
+- **clsx 2.1.1:** Utility for conditional className construction
+
+### Development Dependencies
+
+- **Vite 7.1.7:** Fast build tool and dev server
+- **TypeScript 5.8.3:** Type safety and development experience
+- **ESLint 9.36.0:** Code linting with TypeScript and React rules
+- **Prettier 3.6.2:** Code formatting
+- **Jest 30.1.3:** Testing framework
+- **React Testing Library 16.3.0:** Component testing utilities
+- **user-event 14.6.1:** User interaction simulation
+- **gh-pages 6.3.0:** GitHub Pages deployment
+
+### Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+│   ├── Banner/         # Main banner component
+│   ├── Button/         # Button with variants
+│   ├── CloseButton/    # Accessible close button
+│   ├── Dialog/         # Modal wrapper
+│   ├── Link/           # External link component
+│   └── Typography/     # Typography system
+├── features/           # Feature-specific components
+│   ├── BusinessFundingBanner/
+│   └── BusinessFundingDialog/
+├── utilities/          # Custom hooks and utilities
+│   ├── cn.ts          # Class name utility
+│   ├── useEscapeKey.ts
+│   ├── useFocusFirstInteractiveElement.ts
+│   └── useIsMobile.ts
+├── theme/             # Design tokens
+└── assets/            # Static assets
+```
 
 ### Potential Improvements
 
 - [ ] Implement animation library (Framer Motion)
 - [ ] Add bundle analyzer for size optimization
 - [ ] Consider micro-animations for enhanced UX
+- [ ] Add Storybook for component documentation
+- [ ] Implement visual regression testing
 
 ---
