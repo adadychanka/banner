@@ -8,16 +8,31 @@
     font-family: 'Poppins', serif;
 
     cursor: pointer;
-    transition: background-color 0.5s ease;
+
     border: none;
 }
 
 .primary {
     background-color: #FF4C5C;
     color: #fff;
+    opacity: 1;
+    transition: background-color 0.5s ease;
+}
+
+.primary:hover {
+    background-color: #FF4C5CAA;
 }
 
 .secondary {
-    background-color: #6666FF;
-    color: #fff;
+    background-color: transparent;
+    color: #242424;
+    border: 1px solid #242424;
+    opacity: 1;
+
+    transition: background-color 0.5s ease;
+}
+
+.secondary:hover {
+    background-color: #242424A1;
+    opacity: 0.9;
 }
