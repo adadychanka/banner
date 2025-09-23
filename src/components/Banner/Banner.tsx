@@ -6,23 +6,35 @@ import styles from './Banner.module.css'
 function Banner(props: {
     title: string
     content: ReactElement
-    actions: ReactElement
+    actions: ReactElement[]
 }) {
     const { title, content, actions } = props
 
     return (
-        <div className={styles.banner}>
-            <div className={styles.bannerHeader}>
-                <h1 className={styles.bannerTitle}>{title}</h1>
+        <div className={styles.banner} data-testid="banner">
+            <div className={styles.bannerHeader} data-testid="banner-header">
+                <h1 className={styles.bannerTitle} data-testid="banner-title">
+                    {title}
+                </h1>
 
-                <div>
-                    <CloseButton onClick={() => {}} />
+                <div
+                    className={styles.bannerCloseButton}
+                    data-testid="banner-close-button"
+                >
+                    <CloseButton onClick={() => {}} aria-label="Close banner" />
                 </div>
             </div>
 
             <div className={styles.bannerContent}>{content}</div>
 
-            <div className={styles.bannerActions}>{actions}</div>
+            {actions.length > 0 && (
+                <div className={styles.bannerActions}>
+                    {actions.map((action) => (
+                        <div key={action.key}>{action}</div>
+                    ))}
+                </div>
+            )}
+
             <div className={styles.bannerImage}>
                 <img src={coinsCurrencyBg} alt="" />
             </div>
