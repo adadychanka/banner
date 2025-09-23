@@ -1,0 +1,41 @@
+---
+description: Main project coding standards and guidelines reference
+globs: ['**/*']
+alwaysApply: false
+---
+
+# Project Coding Standards
+
+This project follows established coding standards and best practices documented in `.cursor/rules/`.
+
+## 🚀 Quick Reference
+
+### Testing Standards
+
+- Use `screen` object for all test queries
+- Prefer `userEvent` over `fireEvent` for interactions
+- Import `act` from `@testing-library/react`, not `react-dom/test-utils`
+- Follow semantic query priority: role > label > text > testId
+- Structure tests with descriptive names and clear organization
+- Use 4 spaces for indentation consistently
+
+### File Organization
+
+- Place test files next to components they test
+- Use `.test.tsx` or `.test.ts` extensions
+- Follow AAA pattern: Arrange, Act, Assert
+
+## 📋 Detailed Rules
+
+For comprehensive guidelines, see:
+
+- `.cursor/rules/react-testing-library.md` - RTL best practices
+- `.cursor/rules/test-structure.md` - Test organization
+- `.cursor/rules/README.md` - Complete documentation
+
+## 🔧 Rule Application
+
+Rules are automatically applied based on file patterns:
+
+- Test files: React Testing Library and structure rules
+- All files: General coding standards

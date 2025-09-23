@@ -42,7 +42,7 @@ describe('Button', () => {
         expect(button).toHaveClass('custom-class')
     })
 
-    it('handles click events', () => {
+    it('handles click events', async () => {
         const handleClick = jest.fn()
         render(
             <Button variant="primary" onClick={handleClick}>
@@ -51,7 +51,7 @@ describe('Button', () => {
         )
 
         const button = screen.getByRole('button')
-        userEvent.click(button)
+        await userEvent.click(button)
 
         expect(handleClick).toHaveBeenCalledTimes(1)
     })

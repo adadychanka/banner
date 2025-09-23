@@ -1,0 +1,130 @@
+---
+description: Test structure and organization guidelines - file naming, test organization, and AAA pattern
+globs: ['**/*.test.tsx', '**/*.test.ts', '**/*.spec.tsx', '**/*.spec.ts']
+alwaysApply: true
+---
+
+# Test Structure and Organization
+
+## Test Organization
+
+### File Structure
+
+- Place test files next to the component/utility they test
+- Use `.test.tsx` or `.test.ts` extensions
+- Mirror the source file structure in test organization
+
+```
+src/
+  components/
+    Button/
+      Button.tsx
+      Button.test.tsx
+      Button.module.css
+```
+
+### Test Naming
+
+- Use clear, descriptive names that explain what is being tested
+- Follow the pattern: "should [expected behavior] when [condition]"
+- Be specific about the scenario being tested
+
+```tsx
+// ✅ GOOD - Descriptive test names
+it('should display error message when validation fails')
+it('should disable submit button when form is invalid')
+it('should call onSubmit with form data when form is valid')
+
+// ❌ BAD - Vague test names
+it('works correctly')
+it('handles errors')
+it('submits form')
+```
+
+## Test Structure
+
+### Organize with describe blocks
+
+```tsx
+describe('ComponentName', () => {
+    describe('when condition A', () => {
+        it('should behave in expected way', () => {
+            // Arrange
+            // Act
+            // Assert
+        })
+    })
+
+    describe('when condition B', () => {
+        it('should behave differently', () => {
+            // Arrange
+            // Act
+            // Assert
+        })
+    })
+})
+```
+
+### Follow AAA Pattern
+
+Structure tests with clear Arrange, Act, Assert sections:
+
+```tsx
+it('should update counter when increment button is clicked', async () => {
+    // Arrange
+    const initialCount = 0
+    render(<Counter initialValue={initialCount} />)
+
+    // Act
+    await userEvent.click(screen.getByRole('button', { name: 'Increment' }))
+
+    // Assert
+    expect(screen.getByText('1')).toBeInTheDocument()
+})
+```
+
+## Best Practices
+
+### Test Focus
+
+- **ONE BEHAVIOR** per test - each test should verify one specific behavior
+- **AVOID** testing multiple unrelated things in a single test
+- **USE** setup/teardown appropriately with `beforeEach`/`afterEach`
+
+### Code Style
+
+- **USE** 4 spaces for indentation (consistent with project)
+- **KEEP** imports organized and minimal
+- **USE** meaningful variable names in tests
+- **EXTRACT** common setup into helper functions when needed
+
+### Setup and Teardown
+
+```tsx
+describe('Component with side effects', () => {
+    beforeEach(() => {
+        // Common setup for all tests
+        jest.clearAllMocks()
+    })
+
+    afterEach(() => {
+        // Cleanup after each test
+        cleanup()
+    })
+})
+```
+
+### Helper Functions
+
+```tsx
+// Extract common rendering logic
+const renderWithProps = (props = {}) => {
+    const defaultProps = { variant: 'primary' }
+    return render(<Button {...defaultProps} {...props} />)
+}
+
+it('should render with default props', () => {
+    renderWithProps()
+    expect(screen.getByRole('button')).toHaveClass('primary')
+})
+```

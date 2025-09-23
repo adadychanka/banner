@@ -1,0 +1,86 @@
+---
+description: Use act from @testing-library/react instead of react-dom/test-utils for better testing integration
+globs: ['**/*.test.tsx', '**/*.test.ts', '**/*.spec.tsx', '**/*.spec.ts']
+alwaysApply: true
+---
+
+# React Testing Library Act Usage
+
+## Import act from React Testing Library
+
+- **ALWAYS** import `act` from `@testing-library/react`
+- **NEVER** import `act` from `react-dom/test-utils`
+- RTL's `act` is specifically designed to work seamlessly with the testing environment
+
+### ✅ Preferred Pattern
+
+```tsx
+// GOOD - Import act from React Testing Library
+import { render, screen, act } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+
+test('handles async state updates', async () => {
+    render(<Component />)
+
+    await act(async () => {
+        await userEvent.click(screen.getByRole('button'))
+    })
+
+    expect(screen.getByText('Updated')).toBeInTheDocument()
+})
+```
+
+### ❌ Avoid
+
+```tsx
+// BAD - Don't import act from react-dom/test-utils
+import { render, screen } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
+import userEvent from '@testing-library/user-event'
+
+test('handles async state updates', async () => {
+    render(<Component />)
+
+    await act(async () => {
+        await userEvent.click(screen.getByRole('button'))
+    })
+
+    expect(screen.getByText('Updated')).toBeInTheDocument()
+})
+```
+
+## When to Use act
+
+- **USE** `act` when performing actions that trigger state updates
+- **USE** `act` when testing async operations that affect component state
+- **NOT NEEDED** for most userEvent interactions (they're wrapped automatically)
+- **NEEDED** for direct DOM manipulation or programmatic state changes
+
+### Examples
+
+```tsx
+// ✅ GOOD - Use act for programmatic state changes
+await act(async () => {
+    fireEvent.focus(input) // Direct DOM event
+})
+
+// ✅ GOOD - Use act for async operations
+await act(async () => {
+    await fetchData() // Async operation affecting state
+})
+
+// ✅ USUALLY NOT NEEDED - userEvent handles act internally
+await userEvent.click(button) // No act wrapper needed
+
+// ❌ AVOID - Unnecessary act wrapper
+await act(async () => {
+    await userEvent.click(button) // userEvent already handles act
+})
+```
+
+## Best Practices
+
+- **MINIMIZE** direct use of `act` by preferring userEvent methods
+- **WRAP** only the specific operations that need it
+- **AWAIT** async act calls properly
+- **UNDERSTAND** when RTL handles act automatically vs when you need it manually

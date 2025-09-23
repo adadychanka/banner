@@ -1,0 +1,98 @@
+---
+description: React Testing Library best practices - enforce screen object usage and userEvent over fireEvent
+globs: ['**/*.test.tsx', '**/*.test.ts', '**/*.spec.tsx', '**/*.spec.ts']
+alwaysApply: true
+---
+
+# React Testing Library Best Practices
+
+## Test Selectors
+
+- **ALWAYS** use selectors from the `screen` object (e.g., `screen.getByRole()`, `screen.getByText()`)
+- **NEVER** use selectors directly from `render()` return value (e.g., avoid `const { getByRole } = render()`)
+- This promotes better accessibility testing and follows RTL best practices
+
+### ✅ Preferred Pattern
+
+```tsx
+// GOOD - Use screen selectors
+import { render, screen } from '@testing-library/react'
+
+test('example test', () => {
+    render(<Component />)
+    const button = screen.getByRole('button')
+    expect(button).toBeInTheDocument()
+})
+```
+
+### ❌ Avoid
+
+```tsx
+// BAD - Don't destructure from render
+import { render } from '@testing-library/react'
+
+test('example test', () => {
+    const { getByRole } = render(<Component />)
+    const button = getByRole('button')
+    expect(button).toBeInTheDocument()
+})
+```
+
+## User Interactions
+
+- **USE** `@testing-library/user-event` for user interactions instead of `fireEvent`
+- **MAKE** interaction tests async when using `userEvent`
+- User events more closely simulate real user interactions
+
+### ✅ Preferred Pattern
+
+```tsx
+// GOOD - Use userEvent for interactions
+import userEvent from '@testing-library/user-event'
+import { render, screen } from '@testing-library/react'
+
+test('handles click', async () => {
+    const handleClick = jest.fn()
+    render(<Button onClick={handleClick} />)
+
+    await userEvent.click(screen.getByRole('button'))
+
+    expect(handleClick).toHaveBeenCalled()
+})
+```
+
+### ❌ Avoid
+
+```tsx
+// BAD - Don't use fireEvent for user interactions
+import { fireEvent, render, screen } from '@testing-library/react'
+
+test('handles click', () => {
+    const handleClick = jest.fn()
+    render(<Button onClick={handleClick} />)
+
+    fireEvent.click(screen.getByRole('button'))
+
+    expect(handleClick).toHaveBeenCalled()
+})
+```
+
+## Query Priority
+
+Follow the recommended query priority from RTL documentation:
+
+1. **Accessible by everyone**: `getByRole`, `getByLabelText`, `getByPlaceholderText`, `getByText`
+2. **Semantic HTML**: `getByDisplayValue`
+3. **Test IDs**: `getByTestId` (last resort)
+
+### Query Selection Guide
+
+```tsx
+// ✅ BEST - Use semantic queries
+screen.getByRole('button', { name: 'Submit' })
+screen.getByLabelText('Email')
+screen.getByText('Welcome')
+
+// ⚠️ OK - When semantic queries aren't available
+screen.getByTestId('complex-widget')
+```
