@@ -6,10 +6,12 @@ function Dialog({
     children,
     open,
     onClose,
+    fullScreen,
 }: {
     children: React.ReactNode
     open: boolean
     onClose: () => void
+    fullScreen?: boolean
 }) {
     useEscapeKey(onClose, open)
 
@@ -20,7 +22,13 @@ function Dialog({
             })}
             data-testid="business-funding-banner-dialog"
         >
-            <div className={styles.dialogContent}>{children}</div>
+            <div
+                className={cn(styles.dialogContent, {
+                    [styles.dialogContentFullScreen]: fullScreen,
+                })}
+            >
+                {children}
+            </div>
         </div>
     )
 }

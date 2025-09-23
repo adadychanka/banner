@@ -22,11 +22,20 @@
     outline: none;
 }
 
+.dialogContentFullScreen {
+    height: 100%;
+    max-width: 100%;
+}
+
 @media (max-width: 600px) {
     .dialogContent {
         max-width: 100%;
         margin: 0.5rem;
         border-radius: 0.75rem;
+    }
+
+    .dialogContentFullScreen {
+        margin: 0;
     }
 }
 
