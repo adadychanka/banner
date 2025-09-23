@@ -12,6 +12,7 @@ function Link({ href, children, className, ...props }: LinkProps) {
             href={href}
             className={cn(styles.link, className)}
             target="_blank"
+            rel="noopener noreferrer"
             {...props}
         >
             {children}
