@@ -38,9 +38,13 @@ function BusinessFundingBannerContent() {
                         key={benefit.title}
                         className={styles.businessFundingBannerContentBenefit}
                     >
-                        <span>
+                        <div
+                            className={
+                                styles.businessFundingBannerContentBenefitIcon
+                            }
+                        >
                             <img src={checkIcon} alt="" />
-                        </span>
+                        </div>
                         <Typography variant="h2" component="span">
                             {benefit.title}
                         </Typography>
